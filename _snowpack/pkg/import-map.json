@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "react": "./react.js",
+    "react-contenteditable": "./react-contenteditable.js",
+    "react-dom": "./react-dom.js"
+  }
+}
