@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import ContentEditable from 'react-contenteditable';
 import './App.css';
-
 interface AppProps {}
 
 function App({}: AppProps) {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
+  const [p1Name, setP1Name] = useState<string>('Dev Girl');
+  const [p2Name, setP2Name] = useState<string>('Dev Boy');
+
+  const [p1Score, setP1Score] = useState<number>(10);
+  const [p2Score, setP2Score] = useState<number>(10);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+      <div className="player-container">
+        <p>DEV GIRL</p>
+        <h2>
+          <ContentEditable
+            html={p1Name}
+            onChange={(e) => setP1Name(e.target.value)}
+          />
+        </h2>
+        <h3>{'score - ' + p1Score}</h3>
+        <button onClick={() => setP1Score(p1Score - 1)}>-</button>
+      </div>
+      <div className="player-container">
+        <p>DEV BOY</p>
+        <h2>
+          <ContentEditable
+            html={p2Name}
+            onChange={(e) => setP2Name(e.target.value)}
+          />
+        </h2>
+        <h3>{'score - ' + p2Score}</h3>
+        <button onClick={() => setP2Score(p2Score - 1)}>-</button>
+      </div>
     </div>
   );
 }
